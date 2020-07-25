@@ -1,0 +1,36 @@
+salt: jfoj23h020sjgpsdjgw  # view和order服务上的盐需要相同
+
+server:
+  port: 8762
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  zipkin:
+    base-url: http://localhost:9411   
+  application:
+    name: seckill-view
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5   
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: seckill-goods, seckill-user, seckill-order
+
+logging:
+  file: ../logs/seckill.log
+  level: 
+    root: WARN
+    
+#mybatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

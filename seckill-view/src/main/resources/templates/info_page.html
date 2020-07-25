@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+
+
+<script th:src="@{/static/jquery.min.js}" src="../../webapp/static/jquery.min.js"></script>
+<link th:href="@{/static/bootstrap.min.css}" href="../../webapp/static/bootstrap.min.css" rel="stylesheet"></link>
+<script th:src="@{/static/bootstrap.min.js}" src="../../webapp/static/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<h3 th:text="${info}"></h3>
+
+<a href="/user/login">登录</a>
+<br></br>
+<a href="/user/register">注册</a>
+<br></br>
+<a href="/user/logout">退出登录</a>
+
+</body>
+
+</html>

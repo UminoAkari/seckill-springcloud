@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+ 
+<script src="../static/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+<table border="1">
+  <thead>
+    <th>商品图片</th>
+    <th>商品id</th>
+  	<th>商品名称</th>
+  	<th>库存量</th>
+  	<th>开始时间</th>
+  	<th>结束时间</th>
+  	<th>秒杀详情</th>
+  	<th>秒杀按钮</th>
+  </thead>
+  <tbody>
+     <tr>
+     	<td><img th:src="@{${goods.getGoodsImg()}}" height="100px" width="100px"></img></td>
+        <td th:text="${goods.getGoodsId()}" ></td> 
+        <td th:text="${goods.getGoodsName()}" ></td> 
+        <td th:text="${goods.getGoodsStock()}" ></td> 
+        <td th:text="${goods.getStartTime()}" ></td> 
+        <td th:text="${goods.getEndTime()}" ></td> 
+       <td id="miaoshaTip">
+                <input id="remainSeconds" th:value="${remainSeconds}" type="hidden"/>
+                <span th:if="${seckillStatus eq 0}">
+                	秒杀倒计时:<span id="countDown" th:text="${remainSeconds}"></span>秒
+                </span>
+                <span th:if="${seckillStatus eq 2}">秒杀已结束</span>
+                <span th:if="${seckillStatus eq 1}">秒杀进行中</span>
+        </td>
+        <td>
+        	  <!-- <form th:action="@{'/seckill/'+${goods.getGoodsId()}+'/'+${path}+'/execution'" method="post">  -->
+              <a th:if="${seckillStatus eq 1}" th:href="@{'/seckill/'+${goods.getGoodsId()}+'/'+${path}+'/execution'}">立即秒杀</a>
+              <a th:if="${seckillStatus ne 1}" href="#">----</a>
+		</td> 
+     </tr>
+
+  </tbody>
+</table>
+
+
+
+
+</body>
+
+
+
+
+</html>

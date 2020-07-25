@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<body>
+
+
+<table border="1">
+  <thead class="bg-info">
+    <th>商品图片</th>
+    <th>商品id</th>
+  	<th>商品名称</th>
+  	<th>库存量</th>
+  	<th>开始时间</th>
+  	<th>结束时间</th>
+  	<th>详情页</th>
+  </thead>
+  <tbody>
+     <tr th:each="t: ${list}">
+     	<td><img th:src="@{${t.getGoodsImg()}}" height="100px" width="100px"></img></td>
+        <td th:text="${t.getGoodsId()}" ></td> 
+        <td th:text="${t.getGoodsName()}" ></td> 
+        <td th:text="${t.getGoodsStock()}" ></td> 
+        <td th:text="${t.getStartTime()}" ></td> 
+        <td th:text="${t.getEndTime()}" ></td> 
+        <td><a th:href="@{'/goods/'+${t.getGoodsId()}+'/detail'}">详情</a></td> 
+     </tr>
+
+  </tbody>
+</table>
+
+
+
+
+</body>
+
+</html>

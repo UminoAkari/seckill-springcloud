@@ -1,0 +1,35 @@
+server:
+  port: 8001
+  #port: 8002
+  #port: 8003
+  #port: 8009
+  
+  
+  
+  
+spring:
+  zipkin:
+    base-url: http://localhost:9411   
+  application:
+    name: seckill-user
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/seckill?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8&useSSL=false&useAffectedRows=true
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver	
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  file: ../logs/seckill.log
+  level: 
+    root: WARN
+    
+#mybatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+      
+      

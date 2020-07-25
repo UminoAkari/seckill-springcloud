@@ -1,0 +1,20 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: seckill-eureka # 该微服务的名字
+
+eureka:
+  instance:
+    hostname: localhost # 主机名称
+  client:
+    registerWithEureka: false # 不注册到服务器
+    fetchRegistry: false # 不获取服务器的注册信息
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # 自己作为服务器公布出来的地址http://localhost:8761/eureka/
+ 
+
+logging:
+  file: ../logs/seckill.log
+  level: 
+    root: WARN
