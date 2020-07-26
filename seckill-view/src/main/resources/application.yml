@@ -18,9 +18,11 @@ spring:
     suffix: .html
     encoding: UTF-8
     content-type: text/html
-    mode: HTML5   
+#    mode: HTML5   
 
 ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
   eager-load:
     enabled: true
     clients: seckill-goods, seckill-user, seckill-order

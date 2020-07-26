@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.seckill.order.dao.GoodsDAO;
 import com.seckill.order.dao.OrderDAO;
 import com.seckill.order.entity.SeckillResult;
@@ -39,7 +40,6 @@ public class OrderController {
     @RequestMapping(path="/seckill/{goodsId}/{path}/execution", method=RequestMethod.POST)
     public SeckillResult seckillExection(@PathVariable("goodsId")Integer goodsId, @PathVariable("path")String path, @RequestParam("username")String username) {
 	SeckillResult res = new SeckillResult(goodsId, username);
-	
 	//先验证path是否正确
 	if( ! path.equals(getPath(goodsId)) ) {
 	    res.setStatus(SeckillResult.WRONG_PATH);

@@ -72,5 +72,7 @@
     	<module>seckill-configServer</module>
     	<module>seckill-execution</module>
     	<module>seckill-order</module>
+    	<module>seckill-cache</module>
+    	<module>seckill-common</module>
     </modules>
 </project>

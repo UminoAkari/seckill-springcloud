@@ -1,10 +1,13 @@
 package com.seckill.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,13 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
+import com.seckill.client.CacheClientFeign;
 import com.seckill.client.GoodsClientFeign;
 import com.seckill.client.OrderClientFeign;
 import com.seckill.entity.Goods;
 import com.seckill.entity.SeckillResult;
+import com.seckill.util.RedisKeyUtil;
+
+
 
 @Controller
-public class SeckillController {
+public class SeckillController implements InitializingBean {
     /*
      * 
      * GET  /goods/list  商品列表
@@ -30,14 +37,29 @@ public class SeckillController {
      * 
      * 
      */
-    
-    @Value("${salt}")
-    private String salt;
+ 
     
     private final Logger logger = LoggerFactory.getLogger(SeckillController.class);
     
     @Autowired
     private OrderClientFeign orderClientFeign;
+    @Autowired
+    private GoodsClientFeign goodsClientFeign;
+    @Autowired
+    private CacheClientFeign cacheClientFeign;
+    
+    //初始化前先把库存数量存入redis
+    @Override
+    public void afterPropertiesSet() throws Exception {
+	List<Goods> goods = goodsClientFeign.list();
+	if(goods == null) return;
+	for(Goods g : goods) {
+	    int goodsId = g.getGoodsId();
+	    int stock = g.getGoodsStock();
+	    cacheClientFeign.set(RedisKeyUtil.goodsStockPrefix+goodsId, Integer.toString(stock), RedisKeyUtil.goodsStockExpired);
+	}
+	
+    }
     
     @RequestMapping(path="/seckill/{goodsId}/{path}/execution", method=RequestMethod.GET)
     public String seckillExecution(Model model, @PathVariable("goodsId")Integer goodsId, @PathVariable("path")String path, HttpServletRequest request) {
@@ -61,6 +83,9 @@ public class SeckillController {
 	return "info_page";
 	
     }
+
     
+    
+
     
 }
