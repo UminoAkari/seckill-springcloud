@@ -142,9 +142,12 @@ public class GoodsController {
     
     @RequestMapping(path="/goods/{goodsId}/getPath", method=RequestMethod.GET)
     public String getPath(@PathVariable("goodsId")Integer goodsId) {
+	
 	Goods goods = goodsClientFeign.goodsDetail(goodsId);
 	long now = System.currentTimeMillis();
+	
 	if(now>=goods.getStartTime().getTime() && now <= goods.getEndTime().getTime()) {
+	    
 	    return "forward:/seckill/"+goodsId+"/"+  getMD5(goodsId) +"/execution";
 	}
 	else return "redirect:/goods/"+goodsId+"/detail";

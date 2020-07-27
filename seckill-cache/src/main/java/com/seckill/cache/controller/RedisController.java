@@ -42,7 +42,8 @@ public class RedisController {
     public boolean set(@RequestParam("key")String key,@RequestParam("value") String value,@RequestParam("expired") int expired) {
 	logger.warn("seckill-cache redis-set:key="+key+",value="+value);
 	if(key==null || key.length()<=0) return false;
-	redisTemplate.opsForValue().set(key, value, expired, TimeUnit.SECONDS);
+	if(expired <= 0) redisTemplate.opsForValue().set(key, value);
+	else redisTemplate.opsForValue().set(key, value, expired, TimeUnit.SECONDS);
 	return true;
     }
     

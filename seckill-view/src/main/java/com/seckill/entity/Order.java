@@ -1,4 +1,4 @@
-package com.seckill.order.entity;
+package com.seckill.entity;
 
 import java.sql.Timestamp;
 

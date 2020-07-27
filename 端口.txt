@@ -1,7 +1,0 @@
-seckill-eureka:8761
-seckill-view:8762
-seckill-cache:8763
-seckill-user:8001, ... , 8009
-seckill-goods:8010, ... 8019
-seckill-order:8020, ... ,8029
-zinklp:9411

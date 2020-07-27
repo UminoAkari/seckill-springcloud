@@ -12,4 +12,7 @@ public interface CacheClientFeign {
     
     @RequestMapping(path="/redis/get", method=RequestMethod.GET)
     public String get(@RequestParam("key")String key);
+    
+    @RequestMapping(path="redis/dec", method=RequestMethod.POST)
+    public int decrement(@RequestParam("key")String key);
 }

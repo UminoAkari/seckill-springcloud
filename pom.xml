@@ -74,5 +74,6 @@
     	<module>seckill-order</module>
     	<module>seckill-cache</module>
     	<module>seckill-common</module>
+    	<module>seckill-mq</module>
     </modules>
 </project>
