@@ -1,15 +1,15 @@
-### 接口
-GET  /user/login 跳转到登录页面
-POST /user/login 提交登录信息
-GET  /goods/list  商品列表
-GET  /goods/{商品id}/detail 商品详情 
-GET  /goods/{商品id}/getPath  获取秒杀接口
-POST /seckill/{商品id}/{md5}/exection 执行秒杀
-GET  /test/{username}/{goodsId}/kill 测试秒杀接口
-POST /redis/set   @key @value set
-GET  /redis/get   @key get
-POST /redis/dec   @key 缓存中预先减库存
-POST /seckill/{goodsId}/{path}/sendOrder @username 向消息队列发送下订单操作(包括减库存和记录订单信息)
+### 接口  
+GET  /user/login 跳转到登录页面  
+POST /user/login 提交登录信息  
+GET  /goods/list  商品列表  
+GET  /goods/{商品id}/detail 商品详情   
+GET  /goods/{商品id}/getPath  获取秒杀接口  
+POST /seckill/{商品id}/{md5}/exection 执行秒杀  
+GET  /test/{username}/{goodsId}/kill 测试秒杀接口  
+POST /redis/set   @key @value set  
+GET  /redis/get   @key get  
+POST /redis/dec   @key 缓存中预先减库存  
+POST /seckill/{goodsId}/{path}/sendOrder @username 向消息队列发送下订单操作(包括减库存和记录订单信息)  
 
 ### 端口  
 seckill-eureka:8761  
